@@ -4,8 +4,9 @@ from flask_sqlalchemy import Model, SQLAlchemy
 import stripe
 import json
 import ast
+import bcrypt
 from model.tables import UsersModel
-from app import db
+from config import db
 
 userdata = Blueprint('userdata',__name__)
 
@@ -27,8 +28,14 @@ def add_new_user():
     my_json = request.data.decode('utf8')
     data = json.loads(my_json)
     #new_user = UsersModel(email=data['email'], name=data['name'], first_name=data['firstname'], last_name=data['lastname'])
-    new_user = UsersModel(data['email'],"","","")
+    password = password_generation(data['password']).decode("utf-8")
+    new_user = UsersModel(data['email'],data['name'],data['first_name'],data['last_name'],password)
     db.session.add(new_user)
     db.session.commit()
     print(data['email'])
-    return "hello"
+    return "success"
+
+
+@userdata.route("/registration",methods=['GET'])
+def registration():
+    return render_template('registration.html')

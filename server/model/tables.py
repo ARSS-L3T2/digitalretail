@@ -32,12 +32,14 @@ class UsersModel(db.Model):
     name = db.Column(db.String())
     first_name  = db.Column(db.String())
     last_name  = db.Column(db.String())
+    password = db.Column(db.Text())
 
-    def __init__(self, email, name, first_name, last_name):
+    def __init__(self, email, name, first_name, last_name, password):
         self.email = email
         self.name = name
         self.first_name = first_name
         self.last_name = last_name
+        self.password = password
 
     def __repr__(self):
         return '<id {}>'.format(self.email)
@@ -47,5 +49,6 @@ class UsersModel(db.Model):
             'email': self.email, 
             'name': self.name,
             'first_name': self.first_name,
-            'last_name': self.last_name
+            'last_name': self.last_name,
+            'password': self.password
         }
