@@ -22,8 +22,6 @@ FB_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
 
 FB_SCOPE = ["email"]
 
-#URL = "https://localhost:5000"
-
 @services.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':

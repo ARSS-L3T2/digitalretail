@@ -177,6 +177,7 @@ var orderComplete = function(clientSecret) {
 
     changeLoadingState(false);
   });
+  sessionStorage.removeItem("shoppingCart")
 };
 
 var showError = function(errorMsgText) {

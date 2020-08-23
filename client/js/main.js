@@ -24,6 +24,9 @@ var shoppingCart = (function() {
 	function loadCart() {
 	  cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
 	}
+	console.log(sessionStorage.getItem("shoppingCart"))
+	var username = document.getElementById("username").innerText
+	console.log(username)
 	if (sessionStorage.getItem("shoppingCart") != null) {
 	  loadCart();
 	}
