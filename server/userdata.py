@@ -25,16 +25,40 @@ def get_user_by_email(email_):
 
 @userdata.route("/adduser",methods=['POST'])
 def add_new_user():
-    my_json = request.data.decode('utf8')
-    data = json.loads(my_json)
+    password = request.form.get('password')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    email = request.form.get('email')
+    name = first_name + " " + last_name
+    password = password_generation(password).decode("utf-8")
+    new_user = UsersModel(email,name,first_name,last_name,password)
+    db.session.add(new_user)
+    db.session.commit()
+    print(name)
+    """
+    
     #new_user = UsersModel(email=data['email'], name=data['name'], first_name=data['firstname'], last_name=data['lastname'])
     password = password_generation(data['password']).decode("utf-8")
     new_user = UsersModel(data['email'],data['name'],data['first_name'],data['last_name'],password)
     db.session.add(new_user)
     db.session.commit()
     print(data['email'])
+    """
     return "success"
 
+
+def password_generation(password):
+    
+    passwd = str.encode(password)
+    hashed = bcrypt.hashpw(passwd, bcrypt.gensalt())
+    print(hashed)
+    return hashed
+
+def check_password(password, hashedpasswd):
+    if bcrypt.checkpw(password, hashedpasswd):
+        return True
+    else:
+        return False
 
 @userdata.route("/registration",methods=['GET'])
 def registration():

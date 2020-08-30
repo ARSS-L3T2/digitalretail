@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, Flask, render_template, request, jsonify, redirect
+from flask import Blueprint, Flask, render_template, request, jsonify, redirect, session
 from flask_sqlalchemy import Model, SQLAlchemy
 import flask
 import stripe
@@ -38,12 +38,20 @@ def login():
                 print("The passwords match.")
                 print(user.email)
                 result =get_products()
-                return render_template('index.html', data=result, user_data = user)
+                session["USERNAME"] = user.email
+                user_email = session.get("USERNAME")
+                return render_template('index.html', data=result, user_data = user.email)
             else:
                 print("The passwords do not match.")
         except:
             return render_template('login.html')
     return render_template('login.html')
+
+@services.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.pop("USERNAME")
+    result =get_products()
+    return render_template('index.html', data=result)
 
 
 @services.route('/socialogin', methods=['POST', 'GET'])
@@ -56,19 +64,6 @@ def socialogin():
 
     return render_template('index.html')
 
-
-def password_generation(password):
-    
-    passwd = str.encode(password)
-    hashed = bcrypt.hashpw(passwd, bcrypt.gensalt())
-    print(hashed)
-    return hashed
-
-def check_password(password, hashedpasswd):
-    if bcrypt.checkpw(password, hashedpasswd):
-        return True
-    else:
-        return False
 
 
 @services.route("/fb-login")
@@ -105,4 +100,5 @@ def callback():
     name = facebook_user_data["name"]
     picture_url = facebook_user_data.get("picture", {}).get("data", {}).get("url")
     result =get_products()
-    return render_template('index.html', data=result, user_data = facebook_user_data)
+    session["USERNAME"] = email
+    return render_template('index.html', data=result, user_data = email)

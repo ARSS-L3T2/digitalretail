@@ -38,10 +38,10 @@ def create_payment():
     for i in range(len(processed_data)):
       total_amount+=processed_data[i]["price"] * processed_data[i]["count"]
       print(total_amount)
-      items[processed_data[i]["name"]]  = "{Quantity=" + str(processed_data[i]["count"])  + "}, {Unit_Price=" + str(processed_data[i]["price"]) + "}, {Subtotal=" \
+      items[processed_data[i]["name"]]  = "{Customer_email=" + str(processed_data[i]["username"])  + "}, {Quantity=" + str(processed_data[i]["count"])  + "}, {Unit_Price=" + str(processed_data[i]["price"]) + "}, {Subtotal=" \
         +  str(processed_data[i]["total"]) + "}"
       
-    print("insider payment route!")
+    print("inside payment route!")
     print (data)
     print(total_amount)
     amount = calculate_order_amount(total_amount)
@@ -70,3 +70,7 @@ def calculate_order_amount(total):
 @payment.route('/checkout', methods=['GET'])
 def checkout():
     return render_template('checkout.html', key=stripe_keys['publishable_key'])
+
+def create_custmer(email):
+    
+    return "hello"

@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import JSONB
 from flask_migrate import Migrate
 from flask import Flask
 from app import db
@@ -51,4 +52,23 @@ class UsersModel(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'password': self.password
+        }
+
+class CartsModel(db.Model):
+    __tablename__ = 'carts'
+
+    email = db.Column(db.String, primary_key=True)
+    cartdata = db.Column(JSONB)
+
+    def __init__(self, email, cartdata):
+        self.email = email
+        self.cartdata = cartdata
+
+    def __repr__(self):
+        return '<id {}>'.format(self.email)
+
+    def serialize(self):
+        return {
+            'email': self.email, 
+            'cartdata': self.cartdata
         }

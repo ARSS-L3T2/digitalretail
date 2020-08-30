@@ -1,17 +1,19 @@
 import os
-from flask import Blueprint, Flask, render_template, request, jsonify
+from flask import Blueprint, Flask, render_template, request, jsonify, session
 import stripe
 import json
 import ast
 import tables
 from app import db
 from model.tables import ProductModel
+from model.tables import CartsModel
 
 product = Blueprint('product',__name__)
 
 
 @product.route('/getproduct', methods=['GET'])
 def getProduct():
+    user_email = session.get("USERNAME")
     priceid = request.args.get('priceid')
     print(priceid)
     priceobj = stripe.Price.retrieve(priceid)
@@ -20,7 +22,7 @@ def getProduct():
     data["price"] = priceobj.unit_amount/100
     data["priceid"] =priceid
     print(data)
-    return render_template('product.html', data=data)
+    return render_template('product.html', data=data, user_data = user_email)
 
 
 def get_products ():
@@ -41,3 +43,21 @@ def get_products ():
         result.append(data)
     return result
 
+#https://localhost:5000/getcartdatabyemail?email=leexhadrian@gmail.com
+@product.route("/getcartdatabyemail/",methods=['GET'])
+def get_cart_data ():
+    email = request.args.get('email')
+    
+    cart_data=CartsModel.query.filter_by(email=email).first()
+    print(cart_data.cartdata)
+    return "htllo"
+
+@product.route('/savecartdata', methods=['POST'])
+def save_cart_data ():
+    print("INSIDE SAVE CART")
+    my_json = request.data.decode('utf8')
+    data = json.loads(my_json)
+    processed_data = ast.literal_eval(data)
+    username = processed_data[0]["username"]
+    
+    return "hello"
