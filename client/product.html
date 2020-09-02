@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<!-- base href="/app/public/themes/default/" -->
+	<base href="">
+	
+
+	<title>Supersweat shop</title>
+
+	<!-- Bootstrap core CSS -->
+	
+	<!-- link href="css/bootstrap.css" rel="stylesheet"-->
+	<!-- link href="css/stylesheet.css" rel="stylesheet"-->
+</head>
+
+<body>
+	<!--{{data}} -->
+<div class="page-container">
+
+	<div id="top-nav" class="bg-light smaller-font-size text-muted">
+		<nav class="navbar-expand-md container px-3">
+		  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		  </div>
+		  
+		</nav>
+	</div>		
+
+	<header class="container mt-5">
+		
+	  <div class="row">
+		  
+		<div class="col-md-3">
+			<a href="/" class="logo">
+				<!-- img src="img/logo.png"--> 
+				<h1 class="text-dark"></i><span>Super<span class="text-secondary">Sweat.</span></span></h1>
+				<small class="text-dark">The Clothes shop</small>
+			</a>
+		</div>
+
+		<div class="col-md-5">
+		   
+		   <form class="">
+			</form>
+			
+		</div>
+
+		<div class="col-md-4">
+			
+			<div class="dropdown float-right" id="mini-cart" data-component-cart>
+				
+			  <a class="btn btn-link dropdown-toggle bg-faded p-0 chevron-big" id="dropdownMenuLink" data-toggle="modal" data-target="#cart">
+				
+				  <i class="fa fa-shopping-cart" style="font-size:42px"><span class="cart-items" data-total_items></span></i>&ensp; <div class="d-inline-block text-dark"><span class="small d-block text-left"  id="dropdownMenuLink" data-toggle="modal" data-target="#cart">Your cart</span>$<span class="total-cart" data-total></span></div>
+			  </a>
+
+
+
+			</div>
+			
+		</div>
+	  
+	  </div>
+
+	
+      <nav class="navbar navbar-light bg-white  rounded navbar-expand-md mt-4">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+       
+
+        <div class="collapse navbar-collapse" id="containerNavbar">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item dropdown categories-dropdown">
+              <a aria-haspopup="true" aria-expanded="false"></i>&ensp;Categories </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+    </header>
+
+<body>
+	    
+    <div class="content">
+		
+		<div class="container">
+			<div class="thickline"></div>
+		</div>
+		
+
+	    <article class="product-details container" data-component-product>
+			
+			<div class="row">
+
+				<!-- gallery and tabs column -->
+		
+				<div class="col-md-8">
+					
+					<div class="zoom-gallery row">
+
+					<div class="col-md-10">
+						<a href="img/products/5.jpg"><img src="{{data.images[0]}}" class="img-fluid" data-image></a>
+					</div>
+					
+					</div>
+
+	
+				</div>
+
+				<!-- product name and add to cart -->
+				
+				<div class="col-md-4">
+					<h1 class="product-heading" data-name>{{data.description}}</h1>
+					
+					<!-- product attributes -->
+					<ul class="list-unstyled text-muted">
+					  <li>Brand: <span>{{data.name}}</span></li>
+					  <li>SKU: <span>{{data.id}}</span></li>
+					  <li>Stock: <span>In stock</span></li>
+					</ul>
+					
+					
+					<div class="price h3">
+						<span class="currency" data-currency>$</span> <span data-price>{{data.price}}</span>
+					</div>
+					
+					<hr>
+					
+					<div class="form-group row" id="inputForm">
+						<label for="productQuantity" class="col-form-label col-4">Quantity</label>
+						<input id="productQuantity" class="col-8 form-control" type="number" id="productQuantity" min="1" max="999" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="true">
+
+						<div class="productnotification" id=productnotification></div>
+						
+						
+						<button type="button" class="add-to-cart-multiple btn btn-primary btn-block btn-icon" data-name={{data.name}} data-price={{data.price}}>Add to cart
+						</button>
+						
+
+					</div>
+
+
+
+					
+
+				
+					
+				</div>
+
+			</div>	    
+		
+
+			<div class="product-tabs clearfix" role="tabpanel">
+				  <ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+					  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Description</a>
+					</li>
+
+				  </ul>
+				  <div class="tab-content" id="myTabContent">
+					<div role="tabpanel" class="tab-pane fade active show" id="home" aria-labelledby="home-tab" aria-expanded="true" data-description>
+					  <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+					</div>
+
+				  </div>
+				</div>
+
+		
+	    </article><!-- product-details -->	
+		
+
+    
+    </div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button class="clear-cart btn btn-danger">Clear Cart</button>
+		  <h5 class="modal-title" id="exampleModalLabel">Cart </h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <table class="show-cart table">
+			
+		  </table>
+		  <div>Total price: $<span class="total-cart"></span></div>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="order-checkout btn btn-primary">Order now</button>
+		</div>
+	  </div>
+	</div>
+  
+  
+  </div>   
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <link rel="stylesheet" href="css/bootstap.min.css">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="js/main.js"></script>
+
+		
+  </body>
+</html>
+
