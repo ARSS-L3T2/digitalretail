@@ -34,6 +34,7 @@ def add_new_user():
     new_user = UsersModel(email,name,first_name,last_name,password)
     db.session.add(new_user)
     db.session.commit()
+    db.session.close()
     print(name)
     """
     

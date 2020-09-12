@@ -7,6 +7,7 @@ import tables
 from app import db
 from model.tables import ProductModel
 from model.tables import CartsModel
+from model.tables import UsersModel
 
 product = Blueprint('product',__name__)
 
@@ -44,13 +45,13 @@ def get_products ():
     return result
 
 #https://localhost:5000/getcartdatabyemail?email=leexhadrian@gmail.com
-@product.route("/getcartdatabyemail/",methods=['GET'])
+@product.route("/getcartdatabyemail",methods=['GET'])
 def get_cart_data ():
     email = request.args.get('email')
     
     cart_data=CartsModel.query.filter_by(email=email).first()
     print(cart_data.cartdata)
-    return "htllo"
+    return jsonify(cart_data.cartdata)
 
 @product.route('/savecartdata', methods=['POST'])
 def save_cart_data ():
@@ -59,5 +60,21 @@ def save_cart_data ():
     data = json.loads(my_json)
     processed_data = ast.literal_eval(data)
     username = processed_data[0]["username"]
-    
+    print(processed_data)
+    user_data=CartsModel.query.filter_by(email=username).first()
+    print(user_data)
+    if user_data is not None:
+        print(processed_data)
+        user_data.cartdata=processed_data
+        db.session.commit()
+        db.session.close()
+        print("htllo")
+    else:
+        cart_data = CartsModel(username,processed_data)
+        db.session.add(cart_data)
+        db.session.commit()
+        db.session.close()
+        print("ytes")
+    #db.session.add(cart_data)
+    #db.session.commit()
     return "hello"
