@@ -59,6 +59,7 @@ def save_cart_data ():
     my_json = request.data.decode('utf8')
     data = json.loads(my_json)
     processed_data = ast.literal_eval(data)
+    print(processed_data)
     username = processed_data[0]["username"]
     print(processed_data)
     user_data=CartsModel.query.filter_by(email=username).first()
