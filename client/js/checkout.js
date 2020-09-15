@@ -5,8 +5,24 @@ var stripe;
 var total_amount = 0
 var orderData = localStorage.getItem("object_name");
 
+//function to save shopping cart data to DB
+function saveshoppingcartDB() {
+	var data = localStorage.getItem("object_name");
+	fetch("/savecartdata", {
+		method: "POST",
+		headers: {
+		  "Content-Type": "application/json"
+		},
+		body: JSON.stringify(data)
+	  }).then(function(response) {
+		console.log(response)
+	});
+
+}
+
 // Function to parse order data from index.html
 function loaddata() {
+  
   const orderItems = document.getElementById('order-items');
   const orderTotal = document.getElementById('order-total');
   var data = localStorage.getItem("object_name");
@@ -35,7 +51,6 @@ function loaddata() {
   orderTotal.querySelector('[data-total]').innerText = "$" + total_amount
 
 }
-
 
 fetch("/create-payment-intent", {
   method: "POST",

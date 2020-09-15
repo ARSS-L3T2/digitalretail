@@ -6,7 +6,7 @@
  - export STRIPE_PUBLISHABLE_KEY=pk_test_Hl0hejzTiQ4JVdWcQOcF9XAE00u6tj2b3p
  - export STRIPE_SECRET_KEY=sk_test_hPh9KZpa3JXBTiWABRLpTOHM00mUtR7qI5
 
-2) flask run
+2) FLASK_APP=app.py FLASK_ENV=development flask run --cert=adhoc
 
 **run docker image**
 

@@ -6,14 +6,13 @@
 	<meta name="description" content="">
 	<!-- base href="/app/public/themes/default/" -->
 	<base href="">
-	
-
 	<title>Supersweat shop</title>
+
 </head>
 
 <body>
-<div class="page-container">
 
+<div class="page-container">
 	<div id="top-nav" class="bg-light smaller-font-size text-muted">
 		<nav class="navbar-expand-md container px-3">
 		  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,18 +36,18 @@
 			<div class="collapse navbar-collapse" id="navbar">
 			  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-				  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
 				{% if user_data is defined %}
 					<li class="nav-item dropdown" id="username">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							{{ user_data.email }}
+							{{ user_data}}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">Manage your profile</a>
 						<a class="dropdown-item" href="#">My Orders</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Logout</a>
+						<a class="clear-cart dropdown-item" href="/logout">Logout</a>
 						</div>
 					</li>
 				{% else %}
@@ -76,9 +75,18 @@
         <div class="collapse navbar-collapse" id="containerNavbar">
           <ul class="navbar-nav mr-auto">
 
+			
             <li class="nav-item dropdown categories-dropdown">
-              <a aria-haspopup="true" aria-expanded="false"></i>&ensp;Categories </a>
-            </li>
+				<a href="#" onclick="filterData('')"></i>&ensp;All T-Shirts </a>
+			</li>
+
+            <li class="nav-item dropdown categories-dropdown">
+              <a href="#" onclick="filterData('male')"></i>&ensp;Men T-Shirts </a>
+			</li>
+			
+			<li class="nav-item dropdown categories-dropdown">
+				<a href="#" onclick="filterData('female')"></i>&ensp;Women T-Shirts </a>
+			</li>
           </ul>
         </div>
       </nav>
@@ -105,76 +113,149 @@
 		</div>
 	</div>
 
-    <div class="content">
+	<div>
+		<div class="row">
+			<div class="col-sm-2" >
+				<!-- Section: Sidebar -->
+				<section>
 
-
-    <div class="container products-tab-carousel">
-
-		<nav>
-		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Our products</a>
-		  </div>
-		  
-		</nav>
-		<div class="tab-content" id="nav-tabContent">
-		  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-		<section class="container products clearfix" data-component-products="limit:4 page:0 id:1679,807,786,1597">
-
-			<div>
-				{% for item in data %}
-					<div class="item" data-product style="float: left; width: 200px;">
-						<article class="product">
-							<a href="/getproduct?priceid={{item.priceid}}" data-url>
-								<img src="{{item.images[0]}}" class="img-fluid" data-img>
-							</a>
-							<h3>
-								<a>{{item.description}}</a>
-							</h3>
-							<div class="price-group">
-								<div class="old-price">
-									<span class="currency" data-product-currency>$</span> <span data-product-price>70</span>
-								</div>
-								
-								<div class="price">
-									<span class="currency" data-product-currency>$</span> <span data-product-price>{{item.price}}</span>
-								</div>
-							</div>						
-							
-							<div class="btngroup">
-							  <a type="button" class="add-to-cart btn btn-sm btn-secondary" title="Add to Cart" data-name={{item.name}} data-price="{{item.price}}">
-								  </i> Add to cart
-								  
-							  </a>
-	
-							</div>
-						</article>
+					<!-- Section: Filters -->
+					<section>
+				
+					<h5>Filters</h5>
+				
+					<!-- Section: Condition -->
+					<form id="filterForm">
+						<section class="mb-4">
+				
+							<h6 class="font-weight-bold mb-3">Brand</h6>
 					
+							<div class="form-check pl-0 mb-3">
+							<input type="checkbox" class="filter-option form-check-input filled-in" value="dc">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="new">DC</label>
+							</div>
+							<div class="form-check pl-0 mb-3">
+							<input type="checkbox" class="filter-option form-check-input filled-in" value="marvel">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="used">Marvel</label>
+							</div>
+							<div class="form-check pl-0 mb-3">
+							<input type="checkbox" class="filter-option form-check-input filled-in" value="St-laurent">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="collectible">St-laurent</label>
+							</div>
+							<div class="form-check pl-0 mb-3 pb-1">
+							<input type="checkbox" class="filter-option form-check-input filled-in" value="nike">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="renewed">Nike</label>
+							</div>
+					
+						</section>
+						<!-- Section: Condition -->
+					
+					
+					
+						<!-- Section: Price -->
+						<section class="mb-4">
+					
+							<h6 class="font-weight-bold mb-3">Price</h6>
+					
+							<div class="form-check pl-0 mb-3">
+							<input type="radio" class="filter-option form-check-input" id="pricefilter" name="pricefilter" value="0-25">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="under25">Under $25</label>
+							</div>
+							<div class="form-check pl-0 mb-3">
+							<input type="radio" class="filter-option form-check-input" id="pricefilter" name="pricefilter" value="25-50"> 
+							<label class="form-check-label small text-uppercase card-link-secondary" for="2550">$25 to $50</label>
+							</div>
+							<div class="form-check pl-0 mb-3">
+							<input type="radio" class="filter-option form-check-input" id="pricefilter" name="pricefilter" value="50-100">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="50100">$50 to $100</label>
+							</div>
+							<div class="form-check pl-0 mb-3">
+							<input type="radio" class="filter-option form-check-input" id="pricefilter" name="pricefilter" value="100-200">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="100200">$100 to $200</label>
+							</div>
+							<div class="form-check pl-0 mb-3">
+							<input type="radio" class="filter-option form-check-input" id="pricefilter" name="pricefilter" value="200-1000">
+							<label class="form-check-label small text-uppercase card-link-secondary" for="200above">$200 & Above</label>
+							</div>
+					
+						</section>
+						<!-- Section: Price -->
+
+
+					</form>
+
+
+
+				
+					</section>
+					<!-- Section: Filters -->
+				
+				</section>
+				<!-- Section: Sidebar -->
+			</div>
+			<div class="col-sm-10">
+
+				<nav>
+				  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Our products</a>
+				  </div>
+				  
+				</nav>
+		
+				<section class="container products clearfix" data-component-products="limit:4 page:0 id:1679,807,786,1597">
+					<!--
+					<div>
+						{% for item in data %}
+							<div class="item" data-product style="float: left; width: 200px;">
+								<article class="product">
+									<a href="/getproduct?priceid={{item.priceid}}" data-url>
+										<img src="{{item.images[0]}}" class="img-fluid" data-img>
+									</a>
+									<h3>
+										<a>{{item.name}}</a>
+										<a>{{item.metadata.type}}</a>
+									</h3>
+									<div class="price-group">
+										<div class="old-price">
+											<span class="currency" data-product-currency>$</span> <span data-product-price>70</span>
+										</div>
+										
+										<div class="price">
+											<span class="currency" data-product-currency>$</span> <span data-product-price>{{item.price}}</span>
+										</div>
+									</div>						
+									
+									<div class="btngroup">
+									  <a type="button"  class="add-to-cart btn btn-sm btn-secondary" title="Add to Cart" data-id={{item.id}} data-name={{item.name}} data-price="{{item.price}}">
+										  </i> Add to cart
+										  
+									  </a>
+			
+									</div>
+								</article>
+							
+							</div>
+								
+		
+						{% endfor %}				
 					</div>
-						
-
-				{% endfor %}				
+					-->
+					
+		
+					<div  id="products">
+		
+					</div>
+		
+		
+				</section> <!-- products -->
+		
 				
-				
-				
-				
-
-
-			</div><!-- row -->
-		</section> <!-- products -->
-
-		  
-		  </div>
-		  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-		  
-		  </div>
-		  
-		  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-		  
-		  </div>
+			</div>
 		</div>
-    
-	</div>		
+
+		
+	</div>
+		
 	
 
     </div>
@@ -200,7 +281,9 @@
 		  <div>Total price: $<span class="total-cart"></span></div>
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="order-checkout btn btn-primary">Order now</button>
+			<button type="button" onclick="saveshoppingcartDB()">Test</button>
+		  <button type="button" class="order-checkout btn btn-primary" >Order now</button>
+		  
 		</div>
 	  </div>
 	</div>
@@ -214,14 +297,32 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <link rel="stylesheet" href="css/bootstap.min.css">
-	<link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstap.min.css?version=51">
+	<link href="css/bootstrap.css?version=51" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/filter.js"></script>
+	<script type="text/javascript">
+		var productdata = JSON.parse('{{ data | tojson | safe}}');
+		var results;
+		var cloth_type="all";
+		window.onload = function() {
+			loadData(productdata)
+			results = productdata
+			
+		}
+		
+		//var val = getRadioVal( document.getElementById('filterForm'), 'pricefilter' );
+		//console.log(val)
+
+
+		
+
+	</script>
 
   </body>
 </html>
