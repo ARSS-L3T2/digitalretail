@@ -11,4 +11,4 @@ ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 EXPOSE 5000
 
 # command to run on container start
-CMD export ENV FLASK_APP="server/app.py" && flask run --cert=adhoc
+CMD export ENV FLASK_APP="server/app.py" && flask run --host 0.0.0.0
