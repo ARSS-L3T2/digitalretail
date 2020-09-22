@@ -3,7 +3,7 @@ from flask import Blueprint, Flask, render_template, request, jsonify, session
 import stripe
 import json
 import ast
-import tables
+#import tables
 from app import db
 from model.tables import ProductModel
 from model.tables import CartsModel

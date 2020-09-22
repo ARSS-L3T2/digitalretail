@@ -7,7 +7,7 @@ import ast
 import configparser
 
 config = configparser.ConfigParser()
-config.read('./model/config.ini')
+config.read(os.path.join(os.path.dirname(__file__), 'model', 'config.ini'))
 
 POSTGRES_URL = config['postgresql']['POSTGRES_URL']
 POSTGRES_USER = config['postgresql']['POSTGRES_USER']
