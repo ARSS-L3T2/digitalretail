@@ -13,7 +13,7 @@ function loadData(productdata){
 			+ "<div class='price-group'>"
 			+ "<div class='price'><span class='currency' data-product-currency>$</span> <span data-product-price>"+productdata[i].price+"</span></div>"
 			+ "</div>"
-			+ "<h3><a>"+productdata[i].name+"</a></h3>"
+			+ "<h3><a>"+productdata[i].name.split(".").pop().replace(/_/g , " ")+"</a></h3>"
 			+ "<div class='btngroup'>"
 			+ "<a type='button' class='add-to-cart btn btn-sm btn-secondary' title='Add to Cart' data-id=" + productdata[i].id + " data-name="+productdata[i].name+" data-price="+productdata[i].price+"></i> Add to cart</a>"
 			+ "</div>"

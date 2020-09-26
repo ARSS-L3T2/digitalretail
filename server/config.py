@@ -9,12 +9,12 @@ import configparser
 config = configparser.ConfigParser()
 config.read(os.path.join(os.path.dirname(__file__), 'model', 'config.ini'))
 
-POSTGRES_URL = config['postgresql']['POSTGRES_URL']
-POSTGRES_USER = config['postgresql']['POSTGRES_USER']
-POSTGRES_PW = config['postgresql']['POSTGRES_PW']
-POSTGRES_DB = config['postgresql']['POSTGRES_DB']
-STRIPE_SECRET_KEY = config['stripekeys']['STRIPE_SECRET_KEY']
-STRIPE_PUBLISHABLE_KEY = config['stripekeys']['STRIPE_PUBLISHABLE_KEY']
+POSTGRES_URL = os.environ['POSTGRES_URL']
+POSTGRES_USER = os.environ['POSTGRES_USER']
+POSTGRES_PW = os.environ['POSTGRES_PW']
+POSTGRES_DB = os.environ['POSTGRES_DB']
+STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
+STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
 
 DB_URL = 'postgresql://{user}:{pw}@{url}/{db}'.format(user=POSTGRES_USER,pw=POSTGRES_PW,url=POSTGRES_URL,db=POSTGRES_DB)
 
