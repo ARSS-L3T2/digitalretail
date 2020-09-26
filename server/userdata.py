@@ -25,17 +25,26 @@ def get_user_by_email(email_):
 
 @userdata.route("/adduser",methods=['POST'])
 def add_new_user():
+    error = None
     password = request.form.get('password')
     first_name = request.form.get('first_name')
     last_name = request.form.get('last_name')
     email = request.form.get('email')
     name = first_name + " " + last_name
     password = password_generation(password).decode("utf-8")
-    new_user = UsersModel(email,name,first_name,last_name,password)
-    db.session.add(new_user)
-    db.session.commit()
-    db.session.close()
-    print(name)
+    user_data=UsersModel.query.filter_by(email=email).first()
+    if not user_data :
+        new_user = UsersModel(email,name,first_name,last_name,password)
+        db.session.add(new_user)
+        db.session.commit()
+        db.session.close()
+        print(name)
+        return render_template('login.html')
+    else : 
+        error = "There is already an exisiting user"
+    
+    return render_template('registration.html',error=error)
+
     """
     
     #new_user = UsersModel(email=data['email'], name=data['name'], first_name=data['firstname'], last_name=data['lastname'])

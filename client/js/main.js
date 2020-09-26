@@ -283,6 +283,7 @@ function displayCart() {
 	var cartArray = shoppingCart.listCart();
 	console.log(cartArray)
 	var output = "";
+	
 	for (var i in cartArray) {
 		output += "<tr>"
 			+ "<td>" + cartArray[i].name.split(".").pop().replace(/_/g, " ") + "</td>"

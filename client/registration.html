@@ -81,8 +81,11 @@
                         </div>
                         <p><input type = "submit" value = "submit" class="btn btn-success btn-lg btn-block" /></p>
                      </form>
+                     {% if error %}
+                        <p><strong style='color:red !important;'>Error: {{ error }} </strong>
+                     {% endif %}
+                    <div class="text-center">Already have an account? <a href="/login">Sign in</a></div>
 
-                    <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
                 </div>
             </div>
         </div>
