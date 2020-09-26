@@ -14,8 +14,8 @@ from product import product, get_products
 
 services = Blueprint('services',__name__)
 
-FB_CLIENT_ID = '629425321308895'
-FB_CLIENT_SECRET = '063a075b18f2632c296081895811ed42'
+FB_CLIENT_ID = os.environ['FB_CLIENT_ID']
+FB_CLIENT_SECRET = os.environ['FB_CLIENT_SECRET']
 
 FB_AUTHORIZATION_BASE_URL = "https://www.facebook.com/dialog/oauth"
 FB_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
