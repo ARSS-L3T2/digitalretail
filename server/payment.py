@@ -30,7 +30,9 @@ def update_payment_intent(id):
 def create_payment():
     total_amount = 0
     items= {}
+    print(request.data)
     my_json = request.data.decode('utf8')
+
     data = json.loads(my_json)
     print (data)
     
@@ -70,7 +72,3 @@ def calculate_order_amount(total):
 @payment.route('/checkout', methods=['GET'])
 def checkout():
     return render_template('checkout.html', key=stripe_keys['publishable_key'])
-
-def create_custmer(email):
-    
-    return "hello"
