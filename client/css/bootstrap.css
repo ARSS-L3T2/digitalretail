@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Poppins|Open+Sans:400italic,700italic,400,700");
+@import url("https://fonts.googleapis.com/css?family=Poppins|Open+Sans:400italic,700italic,400,700");
 .no-border {
   border: none !important; }
 
@@ -179,6 +179,12 @@ a {
   a:hover {
     color: #3e23bf;
     text-decoration: underline; }
+
+a.filter {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects; }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
