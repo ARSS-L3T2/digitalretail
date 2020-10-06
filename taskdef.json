@@ -12,6 +12,10 @@
       },
       "secrets": [
         {
+          "valueFrom": "/l3t2/SECRET_KEY",
+          "name": "SECRET_KEY"
+        },
+        {
           "valueFrom": "/l3t2/POSTGRES_URL",
           "name": "POSTGRES_URL"
         },

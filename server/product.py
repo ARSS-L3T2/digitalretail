@@ -69,13 +69,11 @@ def save_cart_data ():
         user_data.cartdata=processed_data
         db.session.commit()
         db.session.close()
-        print("htllo")
     else:
         cart_data = CartsModel(username,processed_data)
         db.session.add(cart_data)
         db.session.commit()
         db.session.close()
-        print("ytes")
     #db.session.add(cart_data)
     #db.session.commit()
-    return "hello"
+    return "saved_data"

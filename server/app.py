@@ -11,7 +11,7 @@ from config import db
 app=Flask(__name__,template_folder='../client', static_url_path='', static_folder='../client')
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DB_URL
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config["SECRET_KEY"] = "OCML3BRawWEUeaxcuKHLpw"
+app.config["SECRET_KEY"] = config.SECRET_KEY
 db = SQLAlchemy(app)
 
 from userdata import userdata
