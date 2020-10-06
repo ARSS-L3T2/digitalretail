@@ -1,5 +1,5 @@
 
-**To start using**
+**To start using thiis**
 
 1) cd to server folder and export the below  
 
