@@ -1,12 +1,12 @@
 
-**To start using this**
+**To start using thiis**
 
 1) cd to server folder and export the below  
 
  - export STRIPE_PUBLISHABLE_KEY=xxx
  - export STRIPE_SECRET_KEY=xxx
 
-2) flask run
+2) FLASK_APP=app.py FLASK_ENV=development flask run --cert=adhoc
 
 **run docker image**
 
