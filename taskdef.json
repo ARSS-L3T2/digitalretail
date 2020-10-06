@@ -1,0 +1,66 @@
+{
+  "executionRoleArn": "arn:aws:iam::189803205932:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/TASK_FAMILY",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "secrets": [
+        {
+          "valueFrom": "/l3t2/POSTGRES_URL",
+          "name": "POSTGRES_URL"
+        },
+        {
+          "name": "POSTGRES_USER",
+          "valueFrom": "/l3t2/POSTGRES_USER"
+        },
+        {
+          "name": "POSTGRES_PW",
+          "valueFrom": "/l3t2/POSTGRES_PW"
+        },
+        {
+          "name": "POSTGRES_DB",
+          "valueFrom": "/l3t2/POSTGRES_DB"
+        },
+        {
+          "name": "FB_CLIENT_ID",
+          "valueFrom": "/l3t2/FB_CLIENT_ID"
+        },
+        {
+          "name": "FB_CLIENT_SECRET",
+          "valueFrom": "/l3t2/FB_CLIENT_SECRET"
+        },
+        {
+          "name": "STRIPE_PUBLISHABLE_KEY",
+          "valueFrom": "/l3t2/STRIPE_PUBLISHABLE_KEY"
+        },
+        {
+          "name": "STRIPE_SECRET_KEY",
+          "valueFrom": "/l3t2/STRIPE_SECRET_KEY"
+        }
+      ],
+      "name": "web-container",
+      "image": "REPOSITORY_URI:IMAGE_TAG",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "containerPort": 5000
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "family": "TASK_FAMILY"
+}
