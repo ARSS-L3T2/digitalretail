@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 **To start using thiis**
+=======
+**To start using this**
+>>>>>>> master
 
 1) cd to server folder and export the below  
 
