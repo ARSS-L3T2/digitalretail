@@ -19,6 +19,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+
   deploy:
     steps:
       - uses: actions/checkout@v2
