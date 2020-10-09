@@ -19,7 +19,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+
   deploy:
+    needs: sonarcloud
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Trigger AWS CodePipeline
