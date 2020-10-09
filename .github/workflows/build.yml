@@ -18,14 +18,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  deploy:
-    steps:
-      - uses: actions/checkout@v2
-      - name: Trigger AWS CodePipeline
-        uses: zulhfreelancer/aws-codepipeline-action@v1.0.7
-        with:
-          aws-region: "us-east-1"
-          aws-access-key: ${{ secrets.AWS_PIPELINE_ACCESS_KEY }}
-          aws-secret-key: ${{ secrets.AWS_PIPELINE_SECRET_KEY }}
-          pipeline-name: "L3T2-Dev-adrian-pipeline"
+  jobs:           
+    deploy:
+        steps:
+        - uses: actions/checkout@v2
+        - name: Trigger AWS CodePipeline
+            uses: zulhfreelancer/aws-codepipeline-action@v1.0.7
+            with:
+            aws-region: "us-east-1"
+            aws-access-key: ${{ secrets.AWS_PIPELINE_ACCESS_KEY }}
+            aws-secret-key: ${{ secrets.AWS_PIPELINE_SECRET_KEY }}
+            pipeline-name: "L3T2-Dev-adrian-pipeline"
