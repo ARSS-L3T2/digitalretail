@@ -21,6 +21,8 @@ jobs:
 
 
   deploy:
+    needs: sonarcloud
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Trigger AWS CodePipeline
