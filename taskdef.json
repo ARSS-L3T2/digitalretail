@@ -49,7 +49,7 @@
         }
       ],
       "name": "web-container",
-      "image": "REPOSITORY_URI:IMAGE_TAG",
+      "image": "REPOSITORY_URI:TAG",
       "essential": true,
       "portMappings": [
         {
