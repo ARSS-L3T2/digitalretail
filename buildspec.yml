@@ -1,5 +1,15 @@
 version: 0.2
 
+env:
+  parameter-store:
+    SECRET_KEY: /l3t2/SECRET_KEY
+    POSTGRES_URL: /l3t2/POSTGRES_URL
+    POSTGRES_USER: /l3t2/POSTGRES_USER
+    POSTGRES_PW: /l3t2/POSTGRES_PW
+    POSTGRES_DB: /l3t2/POSTGRES_DB
+    STRIPE_PUBLISHABLE_KEY: /l3t2/STRIPE_PUBLISHABLE_KEY
+    STRIPE_SECRET_KEY: /l3t2/STRIPE_SECRET_KEY
+
 phases: 
     pre_build:
         commands: 
