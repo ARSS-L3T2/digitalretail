@@ -17,7 +17,7 @@ phases:
             - echo Logging in to Amazon ECR...
             - $(aws ecr get-login --no-include-email --region $REGION)
             - REPOSITORY_URI=$AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO
-            - pip install --upgrade 
+            - pip install --upgrade pip
             - pip install -r requirements.txt
             - python server/tests/test.py 
     build:
