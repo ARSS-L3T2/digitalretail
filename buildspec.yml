@@ -7,6 +7,7 @@ phases:
             - echo Logging in to Amazon ECR...
             - $(aws ecr get-login --no-include-email --region $REGION)
             - REPOSITORY_URI=$AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO
+            - python server/tests/test.py 
     build:
         commands:
             - echo "we are in the build phase"
