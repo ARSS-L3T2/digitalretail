@@ -17,10 +17,7 @@ phases:
             - echo Logging in to Amazon ECR...
             - $(aws ecr get-login --no-include-email --region $REGION)
             - REPOSITORY_URI=$AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO
-            - pip install -U Flask
-            - pip install -U Flask-SQLAlchemy
-            - pip install stripe
-            - pip install bcrypt
+            - pip install --upgrade Flask Flask-SQLAlchemy Flask-Migrate stripe bcrypt 
             - python server/tests/test.py 
     build:
         commands:
