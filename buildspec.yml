@@ -20,6 +20,7 @@ phases:
             - pip install -U Flask
             - pip install -U Flask-SQLAlchemy
             - pip install stripe
+            - pip install bcrypt
             - python server/tests/test.py 
     build:
         commands:
