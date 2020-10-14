@@ -19,6 +19,7 @@ phases:
             - REPOSITORY_URI=$AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO
             - pip install -U Flask
             - pip install -U Flask-SQLAlchemy
+            - pip install stripe
             - python server/tests/test.py 
     build:
         commands:
