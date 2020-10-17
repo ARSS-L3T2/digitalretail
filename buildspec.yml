@@ -34,7 +34,7 @@ phases:
         commands:
             - echo "we are in the post build phase"
             - echo Build completed on `date`
-            - docker run -it --entrypoint /server/tests/test.py $REPO:$TAG
+            - docker run -i --entrypoint /server/tests/test.py $REPO:$TAG
             - echo Pushing the Docker image...
             - docker push $REPOSITORY_URI:$TAG
             - printf '{"imageUri":"%s"}' $AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO:$TAG > imagedefinitions.json
