@@ -19,10 +19,6 @@ phases:
             - echo Logging in to Amazon ECR...
             - $(aws ecr get-login --no-include-email --region $REGION)
             - REPOSITORY_URI=$AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO
-            #- echo Running unit test ...
-            #- pip install --upgrade pip
-            #- pip install -r requirements.txt
-            #- python server/tests/test.py 
     build:
         commands:
             - echo "we are in the build phase"
@@ -34,8 +30,8 @@ phases:
         commands:
             - echo "we are in the post build phase"
             - echo Build completed on `date`
+            - echo Running unit test ...
             - printenv | grep 'POSTGRES\|STRIPE\|SECRET\|FB' > env.list
-            - cat env.list
             - docker run -i --env-file env.list $REPO:$TAG env /bin/bash -c "chmod +x /app/server/tests/test.py; python /app/server/tests/test.py" 
             - echo Pushing the Docker image...
             - docker push $REPOSITORY_URI:$TAG
