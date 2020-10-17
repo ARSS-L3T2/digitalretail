@@ -19,10 +19,10 @@ phases:
             - echo Logging in to Amazon ECR...
             - $(aws ecr get-login --no-include-email --region $REGION)
             - REPOSITORY_URI=$AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO
-            - echo Running unit test ...
-            - pip install --upgrade pip
-            - pip install -r requirements.txt
-            - python server/tests/test.py 
+            #- echo Running unit test ...
+            #- pip install --upgrade pip
+            #- pip install -r requirements.txt
+            #- python server/tests/test.py 
     build:
         commands:
             - echo "we are in the build phase"
@@ -34,6 +34,7 @@ phases:
         commands:
             - echo "we are in the post build phase"
             - echo Build completed on `date`
+            - docker run -it --entrypoint /server/tests/test.py $REPO:$TAG
             - echo Pushing the Docker image...
             - docker push $REPOSITORY_URI:$TAG
             - printf '{"imageUri":"%s"}' $AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO:$TAG > imagedefinitions.json
