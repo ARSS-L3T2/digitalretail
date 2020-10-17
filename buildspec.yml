@@ -34,7 +34,9 @@ phases:
         commands:
             - echo "we are in the post build phase"
             - echo Build completed on `date`
-            - docker run -i $REPO:$TAG /bin/bash -c "chmod +x /app/server/tests/test.py; python /app/server/tests/test.py" 
+            - printenv | grep 'POSTGRES\|STRIPE\|SECRET\|FB' > env.list
+            - cat env.list
+            - docker run -i $REPO:$TAG /bin/bash -c "chmod +x /app/server/tests/test.py; python /app/server/tests/test.py" --env-file env.list
             - echo Pushing the Docker image...
             - docker push $REPOSITORY_URI:$TAG
             - printf '{"imageUri":"%s"}' $AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO:$TAG > imagedefinitions.json
