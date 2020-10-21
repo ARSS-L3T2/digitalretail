@@ -1,5 +1,17 @@
 version: 0.2
 
+env:
+  parameter-store:
+    SECRET_KEY: /l3t2/SECRET_KEY
+    POSTGRES_URL: /l3t2/POSTGRES_URL
+    POSTGRES_USER: /l3t2/POSTGRES_USER
+    POSTGRES_PW: /l3t2/POSTGRES_PW
+    POSTGRES_DB: /l3t2/POSTGRES_DB
+    STRIPE_PUBLISHABLE_KEY: /l3t2/STRIPE_PUBLISHABLE_KEY
+    STRIPE_SECRET_KEY: /l3t2/STRIPE_SECRET_KEY
+    FB_CLIENT_ID: /l3t2/FB_CLIENT_ID
+    FB_CLIENT_SECRET: /l3t2/FB_CLIENT_SECRET
+
 phases: 
     pre_build:
         commands: 
@@ -18,6 +30,9 @@ phases:
         commands:
             - echo "we are in the post build phase"
             - echo Build completed on `date`
+            - echo Running unit test ...
+            - printenv | grep 'POSTGRES\|STRIPE\|SECRET\|FB' > env.list
+            - docker run -i --env-file env.list $REPO:$TAG env /bin/bash -c "chmod +x /app/server/tests/test.py; python /app/server/tests/test.py" 
             - echo Pushing the Docker image...
             - docker push $REPOSITORY_URI:$TAG
             - printf '{"imageUri":"%s"}' $AWS_ID.dkr.ecr.$REGION.amazonaws.com/$REPO:$TAG > imagedefinitions.json
