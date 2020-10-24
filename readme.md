@@ -1,6 +1,5 @@
-test7
 
-**To start using thiis**
+**To start using this**
 
 1) cd to server folder and export the below  
 
