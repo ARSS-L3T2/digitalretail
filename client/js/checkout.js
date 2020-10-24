@@ -7,18 +7,23 @@ var orderData = localStorage.getItem("object_name");
 
 //function to save shopping cart data to DB
 function saveshoppingcartDB() {
-	var data = localStorage.getItem("object_name");
-	fetch("/savecartdata", {
+  console.log("test checkout")
+  //var data = localStorage.getItem("object_name");
+  let element = JSON.parse(localStorage.getItem("object_name"));
+  var data = JSON.stringify([{"username":element[0].username,"count":0}])
+  console.log(data)
+  fetch("/savecartdata", {
 		method: "POST",
 		headers: {
-		  "Content-Type": "application/json"
+			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(data)
-	  }).then(function(response) {
+	}).then(function (response) {
 		console.log(response)
 	});
 
 }
+
 
 // Function to parse order data from index.html
 function loaddata() {
@@ -168,6 +173,9 @@ async function updatePaymentIntentWithShipping(clientSecret){
         }),
       });
       console.log(rawResponse)
+      
+      saveshoppingcartDB();
+      localStorage.clear();
     })();
     
   });  
@@ -192,7 +200,8 @@ var orderComplete = function(clientSecret) {
 
     changeLoadingState(false);
   });
-  sessionStorage.removeItem("shoppingCart")
+  //sessionStorage.removeItem("shoppingCart")
+
 };
 
 var showError = function(errorMsgText) {
