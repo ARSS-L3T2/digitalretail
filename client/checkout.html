@@ -7,19 +7,29 @@
     <meta name="description" content="A demo of Stripe Payment Intents" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="css/bootstap.min.css?version=51">
+	  <link href="css/bootstrap.css?version=51" rel="stylesheet">
     <link rel="stylesheet" href="css/gobal.css" />
     <link rel="stylesheet" href="css/store.css" />
     <script src="js/checkout.js"></script> 
   </head>
 
+  
 
   <body onload="loaddata()"> 
 
     <div class="sr-root">
       <aside id="summary">
         <div class="header">
-          <h1>Order Summary</h1>
+          <h1>
+            Order Summary 
+          </h1>
+          <a href="/" class="logo">
+            <button class="btn btn-success btn-xs" style="float: right;">Return to Home</button>
+          </a>
+          
         </div>
+        
         <div id="order-items"></div>
         <div id="order-total">
           <div class="line-item subtotal">
@@ -119,11 +129,12 @@
           <div class="sr-field-error" id="card-errors" role="alert"></div>
           <button id="submit">
             <div class="spinner hidden" id="spinner"></div>
-            <span id="button-text">Pay</span><span id="order-amount"></span>
+            <span id="button-text"></span>Pay</span><span id="order-amount"></span>
           </button>
         </form>
         <div class="sr-result hidden">
           <p>Payment completed<br /></p>
+          
           <pre>
             <code></code>
           </pre>
