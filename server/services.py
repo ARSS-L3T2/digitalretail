@@ -69,6 +69,7 @@ def socialogin():
 @services.route("/fb-login")
 def fb_login():
     URL = request.url_root.strip("/")
+    print(URL)
     facebook = requests_oauthlib.OAuth2Session(
         FB_CLIENT_ID, redirect_uri=URL + "/fb-callback", scope=FB_SCOPE
     )
@@ -80,6 +81,7 @@ def fb_login():
 @services.route("/fb-callback")
 def callback():
     URL = request.url_root.strip("/")
+    print(URL)
     facebook = requests_oauthlib.OAuth2Session(
         FB_CLIENT_ID, scope=FB_SCOPE, redirect_uri=URL + "/fb-callback"
     )

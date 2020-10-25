@@ -61,23 +61,54 @@ $(document).on('change', '.filter-option', function() {
 		checkbox_result.push($(this).val());
 	});
 	console.log(checkbox_result)
-
-	var arr = radio_result.split("-")
+	console.log("this is radio result")
+	console.log(radio_result)
+	var arr =[]
+	if (radio_result === undefined){
+		arr =[]
+	}else{
+		arr = radio_result.split("-")
+	}
+	 
 	arr = arr.map(Number);
 	console.log(cloth_type)
 
 	if(cloth_type=="all"){
 		if (checkbox_result === undefined || checkbox_result.length == 0) {
-			filtered_data = productdata.filter( element => element.price > arr[0] && element.price <arr[1])
+			if(arr.length==0 || arr === undefined){
+				filtered_data = productdata
+			}else{
+				filtered_data = productdata.filter( element => element.price > arr[0] && element.price <arr[1])
+			}
+			
 		}else{
-			filtered_data = productdata.filter(element => element.price > arr[0] && element.price <arr[1] && checkbox_result.includes(element.metadata.brand));
+			if(arr.length==0 || arr === undefined){
+				filtered_data = productdata.filter(element => checkbox_result.includes(element.metadata.brand));
+			}else{
+				filtered_data = productdata.filter(element => element.price > arr[0] && element.price <arr[1] && checkbox_result.includes(element.metadata.brand));
+			}
+			
 		}
 		console.log(filtered_data)
 	}else if(cloth_type!="all"){
 		if (checkbox_result === undefined || checkbox_result.length == 0) {
-			filtered_data = productdata.filter( element => element.price > arr[0] && element.price <arr[1] && element.metadata.type ==cloth_type)
+			if(arr.length==0 || arr === undefined){
+				filtered_data = productdata.filter( element => element.metadata.type ==cloth_type)
+			}else{
+				filtered_data = productdata.filter( element => element.price > arr[0] && element.price <arr[1] && element.metadata.type ==cloth_type)
+			}
+			
 		}else{
-			filtered_data = productdata.filter( element => element.price > arr[0] && element.price <arr[1] && element.metadata.type ==cloth_type && checkbox_result.includes(element.metadata.brand))
+			console.log("test")
+			console.log(arr)
+			console.log(checkbox_result)
+			if(arr.length==0 || arr === undefined){
+				filtered_data = productdata.filter( element => element.metadata.type ==cloth_type && checkbox_result.includes(element.metadata.brand))
+			}else{
+				
+				filtered_data = productdata.filter( element => element.price > arr[0] && element.price <arr[1] && element.metadata.type ==cloth_type && checkbox_result.includes(element.metadata.brand))
+			}
+			
 		}
 		
 	}else{

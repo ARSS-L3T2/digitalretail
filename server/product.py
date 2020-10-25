@@ -65,10 +65,18 @@ def save_cart_data ():
     user_data=CartsModel.query.filter_by(email=username).first()
     print(user_data)
     if user_data is not None:
-        print(processed_data)
-        user_data.cartdata=processed_data
-        db.session.commit()
-        db.session.close()
+        if processed_data[0]["count"] == 0:
+            print("deleted cart")
+            processed_data=[]
+            user_data.cartdata=[]
+            db.session.commit()
+            db.session.close()
+        else:
+
+            print(processed_data)
+            user_data.cartdata=processed_data
+            db.session.commit()
+            db.session.close()
     else:
         cart_data = CartsModel(username,processed_data)
         db.session.add(cart_data)
